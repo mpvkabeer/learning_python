@@ -25,17 +25,23 @@ print(df)
 
 #==========================#
 
-# load data from a CSV file
-df = pd.read_csv('sample_data_large_set.csv')
-
-print(df)
-
-
-#==========================#
-
-
 # create an empty DataFrame
 df = pd.DataFrame()
-df.head()
+
 print(df)
+
+
+print('#==========================#')
+# load data from a CSV file
+df_from_csv = pd.read_csv('sample_data_large_set.csv')
+
+#print(df_from_csv)
+
+print(df_from_csv.info())  #desc table; column information
+print(df_from_csv.head())  #First 5 records
+print(df_from_csv.tail())  #Last 5 records
+print(df_from_csv.describe()) #Showing Statistics
+
+
+
 
