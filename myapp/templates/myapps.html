@@ -64,10 +64,10 @@
             <td>{{myapp.myapp_name}}</td>
             <td>{{myapp.myapp_description}}</td>
             <td>
-                <img src="/{{myapp.myapp_image}}" style="height: 100px;" /> </td>
+                <img src="{{myapp.myapp_image}}" style="height: 100px;" /> </td>
                 <td>
-                    <a href="/delete_myapp/{{myapp.id }}" class="btn btn-danger m-2">Delete</a>
-                    <a href="/update_myapp/{{myapp.id }}" class="btn btn-success">Update</a>
+                    <a href="delete_myapp/{{myapp.id }}" class="btn btn-danger m-2">Delete</a>
+                    <a href="update_myapp/{{myapp.id }}" class="btn btn-success">Update</a>
                 </td>
           </tr>
           {% endfor %}

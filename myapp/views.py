@@ -13,7 +13,7 @@ def myapps(request):
             myapp_name=myapp_name,
             myapp_description=myapp_description,
         )
-        return redirect('/')
+        return redirect('/myapp')
 
     queryset = MyApp.objects.all()
     if request.GET.get('search'):
@@ -26,7 +26,7 @@ def myapps(request):
 def delete_myapp(request, id):
     myapp = get_object_or_404(MyApp, id=id)
     myapp.delete()
-    return redirect('/')
+    return redirect('/myapp')
 
 
 def update_myapp(request, id):
@@ -42,7 +42,7 @@ def update_myapp(request, id):
         if myapp_image:
             myapp.myapp_image = myapp_image
         myapp.save()
-        return redirect('/')
+        return redirect('/myapp')
 
     context = {'myapp': myapp}
     return render(request, 'update_myapp.html', context)
