@@ -123,7 +123,7 @@ b = np.array([[2, 4],
 
 print(np.dot(a, b))
 
-#Output:
+#Output: c  Logic: Top Right to Bottom-Left
 # [
 #   [22 12]
 #   [40 32]
