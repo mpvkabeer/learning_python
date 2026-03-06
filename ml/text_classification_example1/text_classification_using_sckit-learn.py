@@ -45,17 +45,9 @@ print(f'Accuracy: {accuracy:.4f}')
 print('Classification Report:')
 print(report)
 
-def predict_category(text):
-    """
-    Predict the category of a given text using the trained classifier.
-    """
-    text_vec = vectorizer.transform([text])
-    prediction = clf.predict(text_vec)
-    # for each_item in range(0, len(prediction)):
-    #     print(prediction[each_item])
-    return newsgroups.target_names[prediction[0]]
-
 # Example usage
 sample_text = "NASA announced the discovery of new exoplanets."
-predicted_category = predict_category(sample_text)
+text_vec = vectorizer.transform([sample_text])
+prediction = clf.predict(text_vec)
+predicted_category = newsgroups.target_names[prediction[0]]
 print(f'The predicted category is: {predicted_category}')
