@@ -1,4 +1,4 @@
-install ollama for Windows
+Download and install ollama for Windows (from https://ollama.com/download/windows)
 install llama3 model using the command "ollama run llama3"
 pip install fastapi uvicorn requests
 
