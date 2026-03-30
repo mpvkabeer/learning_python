@@ -1,0 +1,13 @@
+clone or Download https://github.com/techwithtim/AI-Image-Generator
+cd AI-Image_Generator
+Run pycharm as Administrator
+python -m venv env
+.\env\Scripts\activate
+pip install -r requirements.txt
+Go to PyTorch website https://pytorch.org/get-started/locally/ and select the right version
+Copy and ruin the installation script pip install torch torchvision
+Then login to Hugging Face, create new account
+Create new Organization, and then create new Token (Token name: TestTokenForTraining) and Copy the Token (jkdshfjklhdfjklshafhsjkfhsdjkfhskejhfserh)
+Run the command “hugginface-cli login” or “hf auth login”
+Paste the Copied Hugginface token
+Run the 3-5.py file. For the first time, it will take several minutes to download the model to C:\Users\<WindowsUse>\.cache\huggingface\hub

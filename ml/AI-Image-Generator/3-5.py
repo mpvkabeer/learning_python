@@ -5,7 +5,8 @@ large_model = "stabilityai/stable-diffusion-3.5-large"
 
 pipe = StableDiffusion3Pipeline.from_pretrained(large_model, torch_dtype=torch.bfloat16)
 pipe.enable_attention_slicing()
-pipe = pipe.to("cuda")
+#pipe = pipe.to("cuda")
+pipe = pipe.to("cpu")
 
 prompt = "a programmer touching grass"
 
