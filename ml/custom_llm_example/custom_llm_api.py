@@ -14,7 +14,6 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.messages import HumanMessage, AIMessage
 from langchain_community.embeddings.sentence_transformer import SentenceTransformerEmbeddings
 
-import pickle
 
 directory = './custom_models/'
 all_documents = []
