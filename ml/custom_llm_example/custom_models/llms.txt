@@ -1,0 +1,8 @@
+# FastHTML
+
+> FastHTML is a python library which brings together Starlette, Uvicorn, HTMX, and fastcore's `FT` "FastTags" into a library for creating server-rendered hypermedia applications.
+
+Important notes:
+
+- Although parts of its API are inspired by FastAPI, it is *not* compatible with FastAPI syntax and is not targeted at creating API services
+- FastHTML is compatible with JS-native web components and any vanilla JS library, but not with React, Vue, or Svelte.
