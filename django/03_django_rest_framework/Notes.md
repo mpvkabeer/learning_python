@@ -9,3 +9,7 @@ py manage.py makemigrations
 py manage.py migrate 
 
 py manage.py runserver
+
+
+#To Create admin user:
+py manage.py createsuperuser
