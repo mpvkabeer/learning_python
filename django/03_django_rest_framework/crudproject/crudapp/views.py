@@ -1,6 +1,8 @@
 from django.shortcuts import redirect, render
 from .forms import OrderForm
 from .models import Orders
+from rest_framework import viewsets
+from .serializers import OrdersSerializer
 
 # Create your views here.
 def orderFormView(request):
@@ -40,3 +42,7 @@ def deleteView(request, f_oid):
     template_name = 'crudapp/confirmation.html'
     context = {'obj': obj}
     return render(request, template_name, context)
+
+class OrdersViewSet(viewsets.ModelViewSet):
+    queryset = Orders.objects.all()
+    serializer_class = OrdersSerializer
