@@ -1,0 +1,9 @@
+asgiref
+Django
+python-decouple
+sqlparse
+typing_extensions
+tzdata
+django-crispy-forms
+crispy_bootstrap5
+mysqlclient

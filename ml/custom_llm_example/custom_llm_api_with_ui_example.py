@@ -20,25 +20,26 @@ from langchain_community.embeddings.sentence_transformer import SentenceTransfor
 directory = './custom_models/'
 all_documents = []
 
+def docx_to_text(document):
+    texts = []
+    for page in document:
+        texts.append(page.page_content)
+    return '\n'.join(texts)
+
 for filename in os.listdir(directory):
     if filename.endswith('.pdf'):
         filepath = os.path.join(directory, filename)
         loader = PyPDFLoader(filepath)
         documents = loader.load()
-        all_documents.extend(documents)
+        all_documents.extend(docx_to_text(documents))
 
 text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=100)
-texts = text_splitter.split_documents(all_documents)
+texts = text_splitter.split_text( '\n'.join(all_documents))
 
 embeddings = SentenceTransformerEmbeddings(model_name="all-MiniLM-L6-v2")
 #embeddings = SentenceTransformerEmbeddings(model_name="llama3")
 
-if os.path.exists('chroma_db'):
-    # Load
-    vectorstore = Chroma(embedding_function=embeddings, persist_directory="chroma_db")
-else:
-    # If not found -> throw error -> create new
-    vectorstore = Chroma.from_documents(texts, embeddings, persist_directory="chroma_db")
+vectorstore = Chroma.from_texts(texts, embedding=embeddings)
 
 system_prompt = "Auto Response"
 
@@ -68,8 +69,10 @@ if prompt := st.chat_input("Write your queries here"):
 
     with st.chat_message("assistant"):
         #local_model = "llama3.1"
-        local_model = "llama3"
-        llm = ChatOllama(model=local_model, temperature=0.7)
+        #local_model = "llama3"
+
+        # llm = ChatOllama(model=local_model, temperature=0.2)
+        llm = Ollama(model="phi3.5")
 
         # llm = ChatOllama(model=local_model, temperature=0.7)
         # if prompt.lower() in ["quit","exit","bye"]:
@@ -77,11 +80,14 @@ if prompt := st.chat_input("Write your queries here"):
 
         history.append({"role": "user", "content": HumanMessage(content=prompt)})
 
+        print(f"prompt: {prompt}")
         if prompt:
             relevant_docs = retriever.invoke(prompt)
             context_documents_str = "\n\n".join(doc.page_content for doc in relevant_docs)
         else:
             context_documents_str = ""
+
+        print(f"context_documents_str: {context_documents_str}")
 
         qa_prompt_local  = qa_prompt.partial(
             history=history,
@@ -91,14 +97,16 @@ if prompt := st.chat_input("Write your queries here"):
         llm_chain = { "input": RunnablePassthrough() } | qa_prompt_local  | llm
 
         #result = llm_chain.invoke(prompt)
+        result = llm_chain.invoke(prompt)
 
-        stream = llm_chain.stream(
-            input=[
-                {"role": m["role"], "content": m["content"]}
-                for m in st.session_state.messages
-            ]
-        )
+        # stream = llm_chain.stream(
+        #     input=[
+        #         {"role": m["role"], "content": m["content"]}
+        #         for m in st.session_state.messages
+        #     ]
+        # )
 
-        response = st.write_stream(stream)
+        # response = st.write_stream(stream)
+        response = st.write(result)
 
     st.session_state.messages.append({"role": "assistant", "content": response})

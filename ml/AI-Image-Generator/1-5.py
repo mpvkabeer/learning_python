@@ -1,15 +1,15 @@
 import torch
-from diffusers import  StableDiffusion3Pipeline
+from diffusers import  StableDiffusionPipeline
 
-large_model = "stabilityai/stable-diffusion-3.5-large"
+large_model = "sd-legacy/stable-diffusion-v1-5"
 
-pipe = StableDiffusion3Pipeline.from_pretrained(large_model, torch_dtype=torch.bfloat16)
+pipe = StableDiffusionPipeline.from_pretrained(large_model, torch_dtype=torch.bfloat16)
 pipe.enable_attention_slicing()
 #pipe = pipe.to("cuda")
 pipe = pipe.to("cpu")
 
 #prompt = "Young boy playing football"
-prompt = "football"
+prompt = "boy holding football"
 
 results = pipe(
     prompt,
@@ -23,4 +23,4 @@ images = results.images
 
 # Save or display the images
 for i, img in enumerate(images):
-    img.save(f"image_{i}.png")  # Save each image
+    img.save(f"image-{prompt}.png")  # Save each image
