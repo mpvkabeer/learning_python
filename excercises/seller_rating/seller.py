@@ -6,18 +6,6 @@ class Seller:
         self.name = name
         self.profits = profits
 
-    # def __init__(self, id: None, name:None, profits:None, reward: None ):
-    #     self.id = id
-    #     self.name = name
-    #     self.profits = profits
-    #     self.reward = reward
-
-    def add_profit(self, quarter, profit):
-        """Adds a profit for a specific quarter."""
-        if quarter not in self.profits:
-            self.profits[quarter] = []
-        self.profits[quarter].append(profit)
-
     def calculate_and_set_reward(self):
         """Calculates the overall GPA using the calculate_average function."""
         total_profit = sum([profit for profit in self.profits.values()])
@@ -28,4 +16,3 @@ class Seller:
         print(f"Seller Name: {self.name}")
         print(f"Reward: {self.reward}")
         print("----------------------------")
-
