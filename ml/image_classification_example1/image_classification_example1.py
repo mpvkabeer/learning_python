@@ -40,7 +40,7 @@ def resize_all(src, pklname, include, width=150, height=None):
 
 # modify to fit your system
 ##data_path = fr'{os.getenv("HOME")}/downloads/animalface/Image'
-data_path = "J:\\SoftwareServices\\Projects\\PycharmProjects\\data_set_images\\animal_faces"
+data_path = "./animal_faces/train/"
 os.listdir(data_path)
 
 base_name = 'animal_faces'
@@ -49,7 +49,7 @@ width = 80
 # include = {'ChickenHead', 'BearHead', 'ElephantHead',
 #            'EagleHead', 'DeerHead', 'MonkeyHead', 'PandaHead'}
 include = {'CatHead', 'DogHead', 'WildHead'}
-
+#include = {'cat', 'dog', 'wild'}
 resize_all(src=data_path, pklname=base_name, width=width, include=include)
 
 from collections import Counter

@@ -11,9 +11,9 @@ target_names = pickle.load(open(filename_target_names, "rb"))
 
 # Example usage
 #inout_text = "NASA announced the discovery of new exoplanets."
-inout_text = "Microsoft is a good company"
+input_text = "My PC is not working"
 
-text_vec = vectorizer.transform([inout_text])
+text_vec = vectorizer.transform([input_text])
 prediction = clf.predict(text_vec)
 predicted_category = target_names[prediction[0]]
 

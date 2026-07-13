@@ -1,3 +1,4 @@
+#pip install scikit-image
 from skimage.feature import hog
 from skimage.io import imread
 from skimage.transform import rescale
