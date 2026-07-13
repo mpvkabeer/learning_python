@@ -1,0 +1,29 @@
+Download and install ollama for Windows (from https://ollama.com/download/windows)
+install llama3 model using the command "ollama run llama3"
+
+
+pip install fastapi uvicorn requests
+or
+pip install -r requirements.txt
+
+
+Right click and Run main.py  or py main.py
+
+Check if services are runnign fine
+http://localhost:11434
+http://127.0.0.1:8000/docs
+
+Test using REST API Cient (refer API Documentation http://127.0.0.1:8000/docs)
+To install REST client, Go to Browser-? Extension -> Chrome web store, Install REST Client
+
+
+In the REST Client,
+Enter POST as method
+Enter http://127.0.0.1:8000/generate as URL
+Enter forllowing JSON inout in the request section
+{
+  "prompt": "How to create new file"
+}
+
+then Click on Send Request., now you can see the output in the Response section
+

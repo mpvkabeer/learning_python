@@ -1,0 +1,4 @@
+faiss-cpu  # CPU Only
+#faiss-gpu-cu11 # CUDA 11
+#faiss-gpu-cu12 # CUDA 12
+docling
